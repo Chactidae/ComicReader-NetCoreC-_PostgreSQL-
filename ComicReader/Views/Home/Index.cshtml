@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Book>
+
+<div class="container mt-4">
+<div class="row">
+    @if (Model != null)
+    {
+        @foreach (var book in Model)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-4">
+                        <img src="~/images/@book?.PreviewImageId" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text">Описание книги</p>
+                        <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-primary">Подробнее</a>
+                        <button class="btn btn-success mx-2">В избранное</button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+    <a asp-action="CreateBook" class="btn btn-primary">Создать новую книгу</a>
+</div>

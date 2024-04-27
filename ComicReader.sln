@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicReader", "ComicReader\ComicReader.csproj", "{04A17092-0BCF-4102-B352-AE525F019504}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04A17092-0BCF-4102-B352-AE525F019504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A17092-0BCF-4102-B352-AE525F019504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A17092-0BCF-4102-B352-AE525F019504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A17092-0BCF-4102-B352-AE525F019504}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {176BF6E3-17BB-4F6E-8DB8-EDF4337BFD00}
+	EndGlobalSection
+EndGlobal

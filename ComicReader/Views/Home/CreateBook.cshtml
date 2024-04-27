@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "CreateBook";
+}
+
+<h1>CreateBook</h1>
+
+@model Book
+<div class="row mt-4">
+    <div class="col">
+        <h3>Загрузить новую мангу</h3>
+        <form asp-action="CreateBook" method="post">
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Название книги:</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Cover" class="form-label">Обложка:</label>
+                <input asp-for="Cover" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="AuthorId" class="form-label">Автор:</label>
+                <input asp-for="AuthorId" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="BookInfoId" class="form-label">Информация о книге:</label>
+                <input asp-for="BookInfoId" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>
