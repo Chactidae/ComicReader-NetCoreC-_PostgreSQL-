@@ -19,7 +19,7 @@ namespace ComicReader.Controllers
             _logger = logger;
             _bookService = bookService;
         }
- 
+        
         public IActionResult Index()
         {
             string b_name = Request.Query.FirstOrDefault(p => p.Key == "b_name").Value;
@@ -28,13 +28,22 @@ namespace ComicReader.Controllers
             _books = books;
             return View(books);
         }
-
-        public IActionResult CreateBook(Book book)
+        public IActionResult BookInfo(long id)
         {
-            if (ModelState.IsValid)
+            Book currentBook = _bookService.getBook(id);
+            return View(currentBook);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateBook(Book book, IFormFileCollection uploads)
+        {
+            if (uploads != null)
             {
-                _bookService.addBook(book);
-                return RedirectToAction("Index");
+                foreach (var upload in uploads)
+                {
+                    _logger.LogInformation("Файл {FileName} получен!", upload.FileName);
+                }
+                _bookService.addBook(book, uploads);
+                return View();
             }
             return View();
         }

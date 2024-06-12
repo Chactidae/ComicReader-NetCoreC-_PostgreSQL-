@@ -9,7 +9,7 @@
 <div class="row mt-4">
     <div class="col">
         <h3>Загрузить новую мангу</h3>
-        <form asp-action="CreateBook" method="post">
+        <form asp-action="CreateBook" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label asp-for="Title" class="form-label">Название книги:</label>
                 <input asp-for="Title" class="form-control" />
@@ -25,6 +25,14 @@
             <div class="mb-3">
                 <label asp-for="BookInfoId" class="form-label">Информация о книге:</label>
                 <input asp-for="BookInfoId" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="file1" class="form-label">Первая фотография:</label>
+                <input type="file" class="form-control" id="file1" name="uploads">
+                <label for="file2" class="form-label">Вторая фотография:</label>
+                <input type="file" class="form-control" id="file2" name="uploads">
+                <label for="file3" class="form-label">Третья фотография:</label>
+                <input type="file" class="form-control" id="file3" name="uploads">
             </div>
             <button type="submit" class="btn btn-primary">Создать</button>
         </form>

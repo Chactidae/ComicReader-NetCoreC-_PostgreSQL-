@@ -1,5 +1,6 @@
 using ComicReader;
 using ComicReader.Context;
+using ComicReader.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Регистрация классов, которые взаимодействуют с интерфейсом базы данных и с её контекстом
 builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<ImageRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseNpgsql(connectionString));

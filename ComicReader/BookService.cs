@@ -19,7 +19,7 @@ namespace ComicReader
 
         public List<Book> list(string b_name)
         {
-            if (b_name == "")
+            if (b_name == "" || b_name == null)
             {
                 return _context.Books.ToList();
             }
@@ -29,7 +29,7 @@ namespace ComicReader
             }
            
         }
-        public List<Book> addBook(Book book) 
+        public List<Book> addBook(Book book, IFormFileCollection uploads) 
         {
             if (book != null)
             {
@@ -39,5 +39,7 @@ namespace ComicReader
             return _context.Books.ToList();
 
         }
+        
+        public Book getBook(long id) {  return _context.Books.SingleOrDefault(book => book.Id == id); }
     }
 }
