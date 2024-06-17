@@ -33,16 +33,14 @@ namespace ComicReader.Controllers
             Book currentBook = _bookService.getBook(id);
             return View(currentBook);
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateBook(Book book, IFormFileCollection uploads)
+        
+        public async Task<IActionResult> CreateBook(Book book, IFormFile upload)
         {
-            if (uploads != null)
+           
+            if (upload != null)
             {
-                foreach (var upload in uploads)
-                {
-                    _logger.LogInformation("Файл {FileName} получен!", upload.FileName);
-                }
-                _bookService.addBook(book, uploads);
+                
+                _bookService.addBook(book, upload);
                 return View();
             }
             return View();

@@ -25,7 +25,14 @@ namespace ComicReader.Models
         [Column("preview_image_id")]
         public long PreviewImageId { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; } = new List<Image>();
+        public List<Image> Images { get; set; } = new List<Image>();
+        
+
+        public void addImageToBook(Image image)
+        {
+            image.Book = this;
+            Images.Add(image);
+        }
 
         public override bool Equals(object? obj)
         {
