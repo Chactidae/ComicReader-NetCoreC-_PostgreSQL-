@@ -2,6 +2,7 @@
 using ComicReader.Controllers;
 using ComicReader.Models;
 using ComicReader.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Xml.Linq;
 
@@ -39,17 +40,36 @@ namespace ComicReader
             {
                 Image previewImage = toImageEntity(upload);
                 previewImage.IsPreviewImage = true;
-                book.addImageToBook(previewImage);
-               
+
+                // Добавляем книгу в контекст ПЕРЕД вызовом addImageToBook
                 _context.Books.Add(book);
+
+                book.addImageToBook(previewImage);
+
+                _context.SaveChanges(); // Сохраняем как книгу, так и изображение
+
+                book.PreviewImageId = previewImage.Id; // Используйте previewImage.Id напрямую
+
                 _context.SaveChanges();
-                // Получаем Id только что добавленного изображения
-                book.PreviewImageId = book.Images.ElementAt(0).Id;
-                _context.SaveChanges();
-                //_logger.LogInformation("Получен запрос на поиск книги: {BookName}", );
             }
             return _context.Books.ToList();
 
+        }
+        public Book addPageToBook(Book book, IFormFile imagePage)
+        {
+            if (imagePage != null)
+            {
+                Image newPage = toImageEntity(imagePage);
+
+                // Устанавливаем связь с книгой
+                newPage.Book = book;
+
+                // Добавляем изображение в контекст
+                _context.Images.Add(newPage);
+
+                _context.SaveChanges();
+            }
+            return book;
         }
         private Image toImageEntity(IFormFile file)
         {
@@ -74,7 +94,13 @@ namespace ComicReader
             }
             return image;
         }
-        
-        public Book getBook(long id) {  return _context.Books.SingleOrDefault(book => book.Id == id); }
+
+        public Book getBook(long id)
+        {
+            return _context.Books
+                           .Include(b => b.Images) // Загружаем Images 
+                           .Single(book => book.Id == id);
+        }
+
     }
 }

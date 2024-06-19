@@ -26,14 +26,11 @@ namespace ComicReader.Controllers
             _logger.LogInformation("Получен запрос на поиск книги: {BookName}", b_name);
             List<Book> books = _bookService.list(b_name);
             _books = books;
+            
             return View(books);
         }
-        public IActionResult BookInfo(long id)
-        {
-            Book currentBook = _bookService.getBook(id);
-            return View(currentBook);
-        }
         
+
         public async Task<IActionResult> CreateBook(Book book, IFormFile upload)
         {
            

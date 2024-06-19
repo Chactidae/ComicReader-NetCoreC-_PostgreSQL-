@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@book.Title</h5>
                         <p class="card-text">Описание книги</p>
-                            <a asp-action="BookInfo" asp-route-id="@book.Id">Подробнее</a>
+                            <a asp-controller="Book" asp-action="BookInfo" asp-route-id="@book.Id">Подробнее</a>
                         <button class="btn btn-success mx-2">В избранное</button>
                     </div>
                 </div>

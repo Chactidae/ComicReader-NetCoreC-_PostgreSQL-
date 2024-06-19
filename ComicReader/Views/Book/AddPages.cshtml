@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Добавление страниц</h1>
+
+@model Book
+<div class="row mt-4">
+    <div class="col">
+        <h3>Загрузить новые страницы</h3>
+        <form asp-action="CreateBook" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file1" class="form-label">Страница</label>
+                <input type="file" class="form-control" id="file1" name="imagePage">
+            </div>
+            <button type="submit" class="btn btn-primary" asp-action="AddPages" asp-route-id="@Model.Id">Добавить страницу</button>
+        </form>
+    </div>
+</div>

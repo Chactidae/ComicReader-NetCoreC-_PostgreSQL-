@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComicReader.Models
@@ -6,10 +7,7 @@ namespace ComicReader.Models
     [Table("book")]
     public class Book
     {
-        public Book()
-        {
-
-        }
+        
         [Column("book_id")]
         public long Id { get; set; }
 
@@ -25,13 +23,20 @@ namespace ComicReader.Models
         [Column("preview_image_id")]
         public long PreviewImageId { get; set; }
 
-        public List<Image> Images { get; set; } = new List<Image>();
-        
+        public virtual List<Image> Images { get; set; } = new List<Image>();
+
+
+        public Book()
+        {
+            
+        }
 
         public void addImageToBook(Image image)
         {
             image.Book = this;
             Images.Add(image);
+            // Сохраняем изменения в базе данных
+            
         }
 
         public override bool Equals(object? obj)

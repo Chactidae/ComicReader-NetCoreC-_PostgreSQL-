@@ -15,8 +15,7 @@ namespace ComicReader.Context
             // Configure relationships (optional, but recommended)
             modelBuilder.Entity<Book>()
                 .HasMany(b => b.Images)
-                .WithOne(i => i.Book)
-                .HasForeignKey(i => i.Id);
+                .WithOne(i => i.Book);
         }*/
     }
 }
